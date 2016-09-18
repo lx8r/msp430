@@ -3,8 +3,8 @@
 //
 
 #include "Processor.h"
-#include "../exceptions/exceptions.h"
 #include "../thirdparty/easylogging/easylogging++.h"
+#include "../core/base/exceptions/exceptions.h"
 
 #define log el::Loggers::getLogger("gdbProcessor")
 
@@ -109,7 +109,7 @@ void gdb::RequestProcessor::processRegisterWrite(int reg, uint32_t val) {
 }
 
 void gdb::RequestProcessor::processStep() {
-    log->trace("Request single step");
+    log->trace("Request single execute");
     target->step();
     uint8_t reason = target->haltReason();
     client->doSend(Message::interrupt(reason));
@@ -141,7 +141,7 @@ void gdb::RequestProcessor::processReadMem(uint32_t address, int len) {
     try {
         auto data = target->readMemory(address, len);
         client->doSend(Message::bytes(data));
-    } catch (exc::MemoryUnavailable e) {
+    } catch (exc::MemoryUnavailableException e) {
         log->warn("Error reading 0x%02x bytes at [%08x] -> %s", len, address, e.what());
         //TODO: replace err magic value with something
         client->doSend(Message::error(0x01));

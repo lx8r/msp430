@@ -2,13 +2,15 @@
 // Created by Alexei Gladkikh on 18/09/16.
 //
 
-#ifndef MSP430EMU_DUMMY_H
-#define MSP430EMU_DUMMY_H
+#ifndef MSP430EMU_DEBUGGABLEDEVICE_H
+#define MSP430EMU_DEBUGGABLEDEVICE_H
 
-#include "../interfaces/IDebuggable.h"
+#include "../base/interfaces/IDebuggable.h"
+#include "Device.h"
 
-namespace targets {
-    class Dummy : public IDebuggable {
+namespace dummy {
+    class DebuggableDevice : public IDebuggable, public Device {
+    public:
         uint8_t haltReason() override {
             return 0x05;
         }
@@ -17,10 +19,10 @@ namespace targets {
             return false;
         }
 
-        void halt() { }
-        void kill() { }
+        void halt() {}
+        void kill() {}
 
-        std::vector<uint8_t> readMemory(uint32_t vAddr, int count) {
+        std::vector <uint8_t> readMemory(uint32_t vAddr, int count) {
             return std::vector<uint8_t>();
         }
 
@@ -44,7 +46,7 @@ namespace targets {
 
         }
 
-        std::list<uint32_t> readRegisters() override {
+        std::list <uint32_t> readRegisters() override {
             return std::list<uint32_t>();
         }
 
@@ -57,5 +59,4 @@ namespace targets {
         }
     };
 }
-
-#endif //MSP430EMU_DUMMY_H
+#endif //MSP430EMU_DEBUGGABLEDEVICE_H

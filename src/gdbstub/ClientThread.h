@@ -17,7 +17,7 @@ typedef int socklen_t;
 #include <unistd.h>
 #include <stdint.h>
 #include <string>
-#include "../interfaces/IDebuggable.h"
+#include "../core/base/interfaces/IDebuggable.h"
 #include "../helpers/helpers.h"
 #include "Message.h"
 #include "INetwork.h"

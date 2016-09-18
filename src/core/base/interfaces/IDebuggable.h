@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <list>
 #include <vector>
-#include "Breakpoints.h"
+#include "../Breakpoints.h"
 
 class IDebuggable {
 //        val lock: ReentrantLock

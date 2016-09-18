@@ -7,10 +7,10 @@
 
 #include <stdint.h>
 #include <string>
-#include "../interfaces/IDebuggable.h"
-#include "../helpers/helpers.h"
 #include "Message.h"
 #include "INetwork.h"
+#include "../helpers/helpers.h"
+#include "../core/base/interfaces/IDebuggable.h"
 
 namespace gdb {
     class RequestProcessor : public helpers::ARunnableThread {

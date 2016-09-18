@@ -1,0 +1,8 @@
+*~
+.DS_Store
+*.pyc
+.idea/libraries
+workspace.xml
+out
+webServers.xml
+temp
